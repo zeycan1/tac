@@ -31,21 +31,21 @@ go version
 ### ✅  Dosyaları çekip derleyelim
 ```
 cd $HOME
-rm -rf tacchain
+rm -rf $HOME/tacchain
 git clone https://github.com/TacBuild/tacchain.git
 cd tacchain
-git checkout v0.0.11
+git checkout v0.0.10
 make build
 ```
 ### ✅ Cosmovisor Kurulumu
 ```
-go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 mkdir -p $HOME/.tacchaind/cosmovisor/genesis/bin
 cp build/tacchaind $HOME/.tacchaind/cosmovisor/genesis/bin/
-mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin
-cp build/tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/tacchaind
+mkdir -p $HOME/.tacchaind/cosmovisor/upgrades/v0.0.10/bin
+mv build/tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.10/bin/tacchaind
 sudo ln -s $HOME/.tacchaind/cosmovisor/genesis $HOME/.tacchaind/cosmovisor/current -f
 sudo ln -s $HOME/.tacchaind/cosmovisor/current/bin/tacchaind /usr/local/bin/tacchaind -f
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 ```
 ### ✅ Servis Dosyası Oluşturma
 ```
@@ -78,6 +78,8 @@ sudo systemctl enable tacchaind
 echo 'export TAC_PORT="59"' >> ~/.bash_profile
 source ~/.bash_profile
 ```
+### İnit 
+node adımızı yazıyoruz
 ```
 tacchaind init <node-adiniz> --chain-id tacchain_2391-1
 ```
