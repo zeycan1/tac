@@ -15,7 +15,7 @@ sudo apt update -y && sudo apt upgrade -y
 sudo apt install curl git jq lz4 build-essential -y
 ```
 
-### ✅ Go Kurulumu (Go 1.22+ önerilir)
+### ✅ Go Kurulumu 
 ```
 cd $HOME
 wget https://go.dev/dl/go1.22.3.linux-amd64.tar.gz
@@ -28,7 +28,7 @@ source ~/.bash_profile
 ```
 go version
 ```
-### ✅  TacChain Kodlarını Çek ve Derle
+### ✅  Dosyaları çekip derleyelim
 ```
 cd $HOME
 rm -rf tacchain
@@ -47,7 +47,7 @@ cp build/tacchaind $HOME/.tacchaind/cosmovisor/upgrades/v0.0.11/bin/tacchaind
 sudo ln -s $HOME/.tacchaind/cosmovisor/genesis $HOME/.tacchaind/cosmovisor/current -f
 sudo ln -s $HOME/.tacchaind/cosmovisor/current/bin/tacchaind /usr/local/bin/tacchaind -f
 ```
-### ✅ Servis Dosyası Oluştur
+### ✅ Servis Dosyası Oluşturma
 ```
 sudo tee /etc/systemd/system/tacchaind.service > /dev/null <<EOF
 [Unit]
@@ -81,7 +81,7 @@ source ~/.bash_profile
 ```
 tacchaind init <node-adiniz> --chain-id tacchain_2391-1
 ```
-### ✅ Genesis & Addrbook İndir
+### ✅ Genesis & Addrbook 
 ```
 curl -Ls https://raw.githubusercontent.com/TacBuild/tacchain/refs/heads/main/networks/tacchain_2391-1/genesis.json > $HOME/.tacchaind/config/genesis.json
 ```
@@ -122,11 +122,11 @@ s%:26656%:${TAC_PORT}656%g;
 s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${TAC_PORT}656\"%;
 s%:26660%:${TAC_PORT}660%g" $HOME/.tacchaind/config/config.toml
 ```
-### ✅ Snapshot (Hızlı Senkronizasyon)
+### ✅ Snapshot
 ```
 curl -o - -L https://snapshot.corenodehq.xyz/tac_testnet/tac_snap.tar.lz4  | lz4 -c -d - | tar -x -C $HOME/.tacchaind
 ```
-### ✅ Node Başlat
+### ✅ Node Başlatalım
 ```
 sudo systemctl start tacchaind && sudo journalctl -u tacchaind -f --no-hostname -o cat
 ```
@@ -139,17 +139,17 @@ Veya mevcut bir cüzdanı import etmek için:
 ```
 tacchaind keys add cüzdanadınıyaz --recover
 ```
-⚠️ mnemonic kelimeleri mutlaka yedekle!
+⚠️ mnemonic kelimeleri mutlaka yedekleyelim!
 
-### ✅ Ethereum Adresini Öğren 
+### ✅ Ethereum Adresini Öğrenmek için 
 ```
 echo "0x$(tacchaind debug addr $(tacchaind keys show cüzdanadınıyaz -a) | grep hex | awk '{print $3}')"
 ```
-Bu komut sana 0x... formatında bir adres verecek. Bu adres ile faucetten token isteyeceksin.
+Bu komut sana 0x... formatında bir adres verecek. Bu adres ile faucetten token isteyeceğiz.
 ### Faucet
 https://spb.faucet.tac.build/
 
-### Public key'i alma komutu 
+### ✅ Public key'i alma komutu 
 ```
 tacchaind tendermint show-validator
 ```
@@ -160,7 +160,7 @@ Bu komut sana çıktıda şöyle bir şey verecek(Örnektir)
 ```
 nano validatortx.json
 ```
-### Açılan dosyaya aşağıdaki şablonu yapıtırın ve gerekli yerleri düzenleyin
+### ✅ Açılan dosyaya aşağıdaki şablonu yapıtırın ve gerekli yerleri düzenleyelim
 ```
 {
   "pubkey": {
@@ -179,8 +179,8 @@ nano validatortx.json
   "min-self-delegation": "1"
 }
 ```
-CTRL X Y enter ile  kaydedip çık
-### Herşey hazır ve sync olduysak artık validatörümüzü oluşturalım
+CTRL X Y enter ile  kaydedip çıkalım
+### ✅ Herşey hazır ve sync olduysak artık validatörümüzü oluşturalım
 ```
 tacchain# tacchaind tx staking create-validator validatortx.json \
   --from cüzdanadı \
@@ -189,7 +189,7 @@ tacchain# tacchaind tx staking create-validator validatortx.json \
   --gas auto --gas-adjustment 1.4 --fees 9503625000000000utac -y
 ```
 
-### Kendimize delege etmek için:
+### ✅ Kendimize delege etmek için:
 ```
 tacchaind tx staking delegate tacvaloperadresi 9000000000000000000utac \
   --from cüzdanadınız \
