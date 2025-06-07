@@ -87,7 +87,7 @@ tacchaind init <node-adiniz> --chain-id tacchain_2391-1
 ```
 curl -Ls https://raw.githubusercontent.com/TacBuild/tacchain/refs/heads/main/networks/tacchain_2391-1/genesis.json > $HOME/.tacchaind/config/genesis.json
 ```
-### ✅ Seed & Peer Ayarları
+###  ✅ Seed & Peer Ayarları
 ```
 SEEDS=""
 PEERS="9c32b3b959a2427bd2aa064f8c9a8efebdad4c23@206.217.210.164:45130,04a2152eed9f73dc44779387a870ea6480c41fe7@206.217.210.164:45140,5aaaf8140262d7416ac53abe4e0bd13b0f582168@23.92.177.41:45110,ddb3e8b8f4d051e914686302dafc2a73adf9b0d2@23.92.177.41:45120"
