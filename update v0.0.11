@@ -40,8 +40,9 @@ Bu dosya sayesinde Cosmovisor hangi blokta upgrade yapacağını bilir.
 ✅ 5. Cosmovisor symbolic link’i yeni versiyona yönlendir
 ```
 ln -sfn /root/.tacchaind/cosmovisor/upgrades/v0.0.11 /root/.tacchaind/cosmovisor/current
--sfn: Eski linki zorla silip yenisini oluşturur
 ```
+ Eski linki zorla silip yenisini oluşturur
+
 ### ✅ 6. Node servisini yeniden başlat
 ```
 sudo systemctl restart tacchaind
