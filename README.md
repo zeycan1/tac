@@ -184,7 +184,7 @@ nano validatortx.json
 CTRL X Y enter ile  kaydedip çıkalım
 ### ✅ Herşey hazır ve sync olduysak artık validatörümüzü oluşturalım
 ```
-tacchain# tacchaind tx staking create-validator validatortx.json \
+tacchaind tx staking create-validator validatortx.json \
   --from cüzdanadı \
   --chain-id tacchain_2391-1 \
   --node http://localhost:59657 \
